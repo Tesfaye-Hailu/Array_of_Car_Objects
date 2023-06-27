@@ -47,6 +47,24 @@ app.get('/cars/:id', (req, res) => {
   }
 });
 
+
+app.get('/random', (req,res) => {
+  let randomNUmber = Math.floor(Math.random() * cars.length) 
+  res.send(cars[randomNUmber])
+});
+
+//"/search/:string" - send an object from the array if the name matches the string.
+
+app.get ('/search/:name', (req,res) =>{
+  let searchName = req.params.name
+  console.log(searchName)
+  let foundCar = cars.find(car => car.make.toLowerCase() === searchName.toLowerCase())
+  res.send (foundCar)
+
+});
+
+
+
 // POST /cars - Create a new car
 app.post('/cars', (req, res) => {
   const newCar = req.body;
